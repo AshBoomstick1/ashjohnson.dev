@@ -3,3 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/ashjnjqy/public_html/
     - /bin/cp -R images $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp style.css $DEPLOYPATH
+    - /bin/cp logic.js $DEPLOYPATH
