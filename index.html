@@ -32,6 +32,25 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#demos">Demonstrations</a></li>
       </ul>
+      <div id="download_popup">
+        <div>
+          <h3 id="access_name"></h3>
+          <ul id="maze_downloads">
+            <li>
+              <a href="https://www.pling.com/p/2302570" target="_blank">pling KDE Wallpaper Plugin</a>
+            </li>
+            <li>
+              <a href="./downloads/maze/maze-website.zip" download="./downloads/maze/maze-website.zip">Website Source Code</a>
+            </li>
+            <li>
+              <a href="./downloads/maze/maze-py.zip" download="./downloads/maze/maze-py">Python Source Code</a>
+            </li>
+            <li>
+              <a href="./downloads/maze/maze-c++.zip" download="./downloads/maze/maze-c++">C++ Source Code</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <section id="intro">
           <h2 id="name">Ash Johnson</h2>
       </section>
@@ -87,7 +106,7 @@
                 <p>This was one of the first projects I made. Origionaly in Python, the program would make x mazes, then solve every maze generated and calculate the times it took to solve the mazes. Now, recreated in C++ then again in JS, the program can now run in websites and has been published as a wallpaper for KDE.</p>
               </div>
             </div>
-            <img src="images/maze.png" alt="maze project image">
+            <img src="images/maze.png" alt="maze project image" id="maze_image">
           </div>
           <div class="card">
             <div class="card_info">
@@ -97,7 +116,7 @@
                 <p>Pretty self-explanatory, regular Minesweeper except there mutliple boards stacked on top of each other that can interact creating a third dimension. Played through the terminal.</p>
               </div>
             </div>
-            <img src="images/3dminesweeper.png" alt="maze project image">
+            <img src="images/3dminesweeper.png" alt="maze project image" id="minesweeper_image">
           </div>
           <div class="card">
             <div class="card_info">
@@ -107,7 +126,7 @@
                 <p>Another one of my earlier projects. There are three versions, the first is regular snake where you place alone, the second is you versus the a computer controlled snake, and the third where the computer controls a snake alone. This is played in the terminal.</p>
               </div>
             </div>
-            <img src="images/snake.png" alt="maze project image">
+            <img src="images/snake.png" alt="maze project image" id="snake_image">
           </div>
           <div class="card">
            <div class="card_info">
@@ -117,7 +136,7 @@
                <p>A school project where you undertake Odysseus's journry by playing 17 mini-games for each location Odysseus stopped at. Each of the games was programed by me with pure JS and html and my partner Jonah made all of the art and textures as well as planning all of the mini-games out. You can still access the project at <a href="https://odysseyproject.xyz/" target="blank" class="regular_link">odysseyproject.xyz</a>.</p>
              </div>
            </div>
-           <img src="images/odyssey.png" alt="maze project image">
+           <img src="images/odyssey.png" alt="maze project image" id="odyssey_image">
           </div>
         </grid>
       </section>

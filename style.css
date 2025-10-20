@@ -161,6 +161,42 @@ header img {
   line-height: 120px;
 }
 
+#download_popup {
+  top: 0px;
+  left: 0px;
+  display: none;
+  position: fixed;
+  width: calc(100% + var(--body-left-padding));
+  height: 100vh;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+#access_name {
+  font-size: 50px;
+}
+
+#download_popup div {
+  width: max-content;
+  justify-self: center;
+  align-self: center;
+  padding-right: 100px;
+}
+
+#download_popup ul {
+  border-top: 1px solid light-dark(var(--header-light, black), var(--header-dark, white));
+  width: max-content;
+}
+
+#download_popup a {
+  font-size: 30px;
+  line-height: 60px;;
+}
+
+#maze_downloads {
+  display: none;
+}
+
 .title {
   color: light-dark(var(--header-light, black), var(--header-dark, white));
   margin-left: 10px;
