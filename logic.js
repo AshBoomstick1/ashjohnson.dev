@@ -109,46 +109,71 @@ download_background.addEventListener("click", hide_lists)
 maze_image.addEventListener("click", () => {selected_project = "maze"; show_download_page()})
 
 
+//header animation
+document.getElementById("intro").getElementsByTagName("h2")[0].animate(
+    [
+      {filter: "blur(3px)", opacity: 0},
+      {transform: "translate3d(-50px, 0px, 0px)", filter: "blur(2px)", opacity: 0.5, offset: 0.3},
+      {filter: "blur(0px)", opacity: 1}
+    ],
+    {
+      duration: 400,
+      easing: "ease",
+      iterations: 1
+    },
+  );
+
 //scroll aniamtions
 
 let h2_1 = document.getElementsByTagName("h2")[1];
 let h2_2 = document.getElementsByTagName("h2")[2];
 
+let anim_1_done = false;
+let anim_2_done = false;
+
 const isInViewport = (element) => {
   let bounding = element.getBoundingClientRect();
-  
-  if (bounding.top >= 0) {
+  if (bounding.top >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + element.offsetHeight) {
+    console.log(element);
     return true;
   } else {
     return false;
   }
 }
 
-const animate_element = (element) => {
-  element.animate(
-    [
-      {transform: "translate3d(-550px, 0, 0)"},
-      {transform: "translate3d(-250px, 0, 0)", offset: 0.3},
-      {transform: "translate3d(0, 0, 0)"}
-    ],
-    {
-      duration: 500,
-      easing: "ease",
-      iterations: 1
-    },
-  );
+
+window.onscroll = (event) => {
+  if (isInViewport(h2_1) && !anim_1_done) 
+  {
+    anim_1_done = true;
+    h2_1.animate(
+      [
+        {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+  };
+
+  if (isInViewport(h2_2) && !anim_2_done) 
+  {
+    anim_2_done = true;
+    h2_2.animate(
+      [
+        {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+  };
 }
-
-window.addEventListener('scroll', function (event) {
-    if (isInViewport(h2_1) && !h2_1.classList.contains("animation_done")) 
-    {
-      animate_element(h2_1);
-      h2_1.classList.add("animation_done");
-    };
-
-    if (isInViewport(h2_2) && !h2_2.classList.contains("animation_done")) 
-    {
-      animate_element(h2_2);
-      h2_2.classList.add("animation_done");
-    };
-}, false);
