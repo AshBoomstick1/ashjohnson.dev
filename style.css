@@ -303,6 +303,7 @@ header img {
   border-radius: 10px;
   transition: all 75ms cubic-bezier(0,.83,.85,1.23);
   filter: drop-shadow(1px 1px 1px #000000);
+  align-self: center;
 }
 
 #projects p {

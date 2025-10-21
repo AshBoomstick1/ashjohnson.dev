@@ -302,8 +302,8 @@ window.onscroll = (event) => {
     project_img_anim_1_done = true;
     project_img_1.animate(
       [
-        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
         {scale: 1, filter: "blur(0px)", opacity: 1}
       ],
       {
@@ -321,8 +321,8 @@ window.onscroll = (event) => {
     project_img_anim_2_done = true;
     project_img_2.animate(
       [
-        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
         {scale: 1, filter: "blur(0px)", opacity: 1}
       ],
       {
@@ -340,8 +340,8 @@ window.onscroll = (event) => {
     project_img_anim_3_done = true;
     project_img_3.animate(
       [
-        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
         {scale: 1, filter: "blur(0px)", opacity: 1}
       ],
       {
@@ -359,8 +359,8 @@ window.onscroll = (event) => {
     project_img_anim_4_done = true;
     project_img_4.animate(
       [
-        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
         {scale: 1, filter: "blur(0px)", opacity: 1}
       ],
       {
