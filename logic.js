@@ -107,3 +107,48 @@ const hide_lists = () => {
 
 download_background.addEventListener("click", hide_lists)
 maze_image.addEventListener("click", () => {selected_project = "maze"; show_download_page()})
+
+
+//scroll aniamtions
+
+let h2_1 = document.getElementsByTagName("h2")[1];
+let h2_2 = document.getElementsByTagName("h2")[2];
+
+const isInViewport = (element) => {
+  let bounding = element.getBoundingClientRect();
+  
+  if (bounding.top >= 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const animate_element = (element) => {
+  element.animate(
+    [
+      {transform: "translate3d(-550px, 0, 0)"},
+      {transform: "translate3d(-250px, 0, 0)", offset: 0.3},
+      {transform: "translate3d(0, 0, 0)"}
+    ],
+    {
+      duration: 500,
+      easing: "ease",
+      iterations: 1
+    },
+  );
+}
+
+window.addEventListener('scroll', function (event) {
+    if (isInViewport(h2_1) && !h2_1.classList.contains("animation_done")) 
+    {
+      animate_element(h2_1);
+      h2_1.classList.add("animation_done");
+    };
+
+    if (isInViewport(h2_2) && !h2_2.classList.contains("animation_done")) 
+    {
+      animate_element(h2_2);
+      h2_2.classList.add("animation_done");
+    };
+}, false);
