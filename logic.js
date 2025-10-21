@@ -125,6 +125,7 @@ document.getElementById("intro").getElementsByTagName("h2")[0].animate(
 
 //scroll aniamtions
 
+//headers
 let h2_1 = document.getElementsByTagName("h2")[1];
 let h2_2 = document.getElementsByTagName("h2")[2];
 
@@ -133,6 +134,23 @@ let anim_2_done = false;
 
 h2_1.style.opacity = "0";
 h2_2.style.opacity = "0";
+
+
+//languages cards
+let lang_1 = document.getElementById("languages").getElementsByClassName("card")[0];
+let lang_2 = document.getElementById("languages").getElementsByClassName("card")[1];
+let lang_3 = document.getElementById("languages").getElementsByClassName("card")[2];
+let lang_4 = document.getElementById("languages").getElementsByClassName("card")[3];
+
+let lang_anim_1_done = false;
+let lang_anim_2_done = false;
+let lang_anim_3_done = false;
+let lang_anim_4_done = false;
+
+lang_1.style.opacity = "0";
+lang_2.style.opacity = "0";
+lang_3.style.opacity = "0";
+lang_4.style.opacity = "0";
 
 const isInViewport = (element) => {
   let bounding = element.getBoundingClientRect();
@@ -182,5 +200,83 @@ window.onscroll = (event) => {
     );
 
     h2_2.style.opacity = "1";
+  };
+
+
+
+  if (isInViewport(lang_1) && !lang_anim_1_done) 
+  {
+    lang_anim_1_done = true;
+    lang_1.animate(
+      [
+        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    lang_1.style.opacity = "1";
+  };
+
+  if (isInViewport(lang_2) && !lang_anim_2_done) 
+  {
+    lang_anim_2_done = true;
+    lang_2.animate(
+      [
+        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    lang_2.style.opacity = "1";
+  };
+
+  if (isInViewport(lang_3) && !lang_anim_3_done) 
+  {
+    lang_anim_3_done = true;
+    lang_3.animate(
+      [
+        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    lang_3.style.opacity = "1";
+  };
+
+  if (isInViewport(lang_4) && !lang_anim_4_done) 
+  {
+    lang_anim_4_done = true;
+    lang_4.animate(
+      [
+        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    lang_4.style.opacity = "1";
   };
 }

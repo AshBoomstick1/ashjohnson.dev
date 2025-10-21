@@ -28,7 +28,7 @@ h1 {
     color: light-dark(var(--header-light, black), #e0dde2);
     text-align: center;
     padding-bottom: 10px;
-    font-family: Inter, "Segoe UI", sans-serif;
+    font-family: Inter, "IBM Plex Serif", serif;
 }
 
 h2 {
@@ -200,10 +200,11 @@ header img {
 .title {
   color: light-dark(var(--header-light, black), var(--header-dark, white));
   margin-left: 10px;
-  font-size: 35px;
+  font-size: 25px;
+  line-height: 50px;
   text-align: left;
-  font-family: "Cultive Mono", serif;
-  font-weight: 100;
+  font-family: Inter, "IBM Plex Serif", serif;
+  font-weight: 400;
 }
 
 #intro {
