@@ -131,9 +131,12 @@ let h2_2 = document.getElementsByTagName("h2")[2];
 let anim_1_done = false;
 let anim_2_done = false;
 
+h2_1.style.opacity = "0";
+h2_2.style.opacity = "0";
+
 const isInViewport = (element) => {
   let bounding = element.getBoundingClientRect();
-  if (bounding.top >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + element.offsetHeight) {
+  if (bounding.top >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + (element.offsetHeight / 2)) {
     console.log(element);
     return true;
   } else {
@@ -158,6 +161,8 @@ window.onscroll = (event) => {
         iterations: 1
       },
     );
+
+    h2_1.style.opacity = "1";
   };
 
   if (isInViewport(h2_2) && !anim_2_done) 
@@ -175,5 +180,7 @@ window.onscroll = (event) => {
         iterations: 1
       },
     );
+
+    h2_2.style.opacity = "1";
   };
 }
