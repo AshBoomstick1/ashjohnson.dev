@@ -152,6 +152,23 @@ lang_2.style.opacity = "0";
 lang_3.style.opacity = "0";
 lang_4.style.opacity = "0";
 
+
+//project images
+let project_img_1 = document.getElementById("projects").getElementsByTagName("img")[0];
+let project_img_2 = document.getElementById("projects").getElementsByTagName("img")[1];
+let project_img_3 = document.getElementById("projects").getElementsByTagName("img")[2];
+let project_img_4 = document.getElementById("projects").getElementsByTagName("img")[3];
+
+let project_img_anim_1_done = false;
+let project_img_anim_2_done = false;
+let project_img_anim_3_done = false;
+let project_img_anim_4_done = false;
+
+project_img_1.style.opacity = "0";
+project_img_2.style.opacity = "0";
+project_img_3.style.opacity = "0";
+project_img_4.style.opacity = "0";
+
 const isInViewport = (element) => {
   let bounding = element.getBoundingClientRect();
   if (bounding.top >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + (element.offsetHeight / 2)) {
@@ -278,5 +295,81 @@ window.onscroll = (event) => {
     );
 
     lang_4.style.opacity = "1";
+  };
+
+  if (isInViewport(project_img_1) && !project_img_anim_1_done) 
+  {
+    project_img_anim_1_done = true;
+    project_img_1.animate(
+      [
+        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 1, filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    project_img_1.style.opacity = "1";
+  };
+
+  if (isInViewport(project_img_2) && !project_img_anim_2_done) 
+  {
+    project_img_anim_2_done = true;
+    project_img_2.animate(
+      [
+        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 1, filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    project_img_2.style.opacity = "1";
+  };
+
+  if (isInViewport(project_img_3) && !project_img_anim_3_done) 
+  {
+    project_img_anim_3_done = true;
+    project_img_3.animate(
+      [
+        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 1, filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    project_img_3.style.opacity = "1";
+  };
+
+  if (isInViewport(project_img_4) && !project_img_anim_4_done) 
+  {
+    project_img_anim_4_done = true;
+    project_img_4.animate(
+      [
+        {scale: 0.5, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+        {scale: 0.75, transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+        {scale: 1, filter: "blur(0px)", opacity: 1}
+      ],
+      {
+        duration: 500,
+        easing: "ease",
+        iterations: 1
+      },
+    );
+
+    project_img_4.style.opacity = "1";
   };
 }
