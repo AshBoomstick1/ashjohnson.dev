@@ -179,197 +179,132 @@ const isInViewport = (element) => {
   }
 }
 
+const header_animation = (element) => {
+  element.animate(
+    [
+      {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
+      {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+      {filter: "blur(0px)", opacity: 1}
+    ],
+    {
+      duration: 500,
+      easing: "ease",
+      iterations: 1
+    },
+  );
+
+  element.style.opacity = "1";
+}
+
+
+const language_card_animation = (element) => {
+  element.animate(
+    [
+      {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+      {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+      {filter: "blur(0px)", opacity: 1}
+    ],
+    {
+      duration: 500,
+      easing: "ease",
+      iterations: 1
+    },
+  );
+
+  element.style.opacity = "1";
+}
+
+
+const project_image_animation = (element) => {
+  element.animate(
+    [
+      {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
+      {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+      {scale: 1, filter: "blur(0px)", opacity: 1}
+    ],
+    {
+      duration: 500,
+      easing: "ease",
+      iterations: 1
+    },
+  );
+
+  element.style.opacity = "1";
+}
+
+if (isInViewport(h2_1)) {header_animation(h2_1); anim_1_done = true;}
+if (isInViewport(h2_2)) {header_animation(h2_2); anim_2_done = true;}
+
+if (isInViewport(lang_1)) {language_card_animation(lang_1); lang_anim_1_done = true;}
+if (isInViewport(lang_2)) {language_card_animation(lang_2); lang_anim_2_done = true;}
+if (isInViewport(lang_3)) {language_card_animation(lang_3); lang_anim_3_done = true;}
+if (isInViewport(lang_4)) {language_card_animation(lang_4); lang_anim_4_done = true;}
+
+if (isInViewport(project_img_1)) {project_image_animation(project_img_1); project_img_anim_1_done = true;}
+if (isInViewport(project_img_2)) {project_image_animation(project_img_2); project_img_anim_2_done = true;}
+if (isInViewport(project_img_3)) {project_image_animation(project_img_3); project_img_anim_3_done = true;}
+if (isInViewport(project_img_4)) {project_image_animation(project_img_4); project_img_anim_4_done = true;}
 
 window.onscroll = (event) => {
   if (isInViewport(h2_1) && !anim_1_done) 
   {
     anim_1_done = true;
-    h2_1.animate(
-      [
-        {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    h2_1.style.opacity = "1";
+    header_animation(h2_1);
   };
 
   if (isInViewport(h2_2) && !anim_2_done) 
   {
     anim_2_done = true;
-    h2_2.animate(
-      [
-        {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    h2_2.style.opacity = "1";
+    header_animation(h2_2);
   };
-
 
 
   if (isInViewport(lang_1) && !lang_anim_1_done) 
   {
     lang_anim_1_done = true;
-    lang_1.animate(
-      [
-        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    lang_1.style.opacity = "1";
+    language_card_animation(lang_1);
   };
 
   if (isInViewport(lang_2) && !lang_anim_2_done) 
   {
     lang_anim_2_done = true;
-    lang_2.animate(
-      [
-        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    lang_2.style.opacity = "1";
+    language_card_animation(lang_2);
   };
 
   if (isInViewport(lang_3) && !lang_anim_3_done) 
   {
     lang_anim_3_done = true;
-    lang_3.animate(
-      [
-        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    lang_3.style.opacity = "1";
+    language_card_animation(lang_3);
   };
 
   if (isInViewport(lang_4) && !lang_anim_4_done) 
   {
     lang_anim_4_done = true;
-    lang_4.animate(
-      [
-        {transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    lang_4.style.opacity = "1";
+    language_card_animation(lang_4);
   };
+
 
   if (isInViewport(project_img_1) && !project_img_anim_1_done) 
   {
     project_img_anim_1_done = true;
-    project_img_1.animate(
-      [
-        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {scale: 1, filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    project_img_1.style.opacity = "1";
+    project_image_animation(project_img_1);
   };
 
   if (isInViewport(project_img_2) && !project_img_anim_2_done) 
   {
     project_img_anim_2_done = true;
-    project_img_2.animate(
-      [
-        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {scale: 1, filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    project_img_2.style.opacity = "1";
+    project_image_animation(project_img_2);
   };
 
   if (isInViewport(project_img_3) && !project_img_anim_3_done) 
   {
     project_img_anim_3_done = true;
-    project_img_3.animate(
-      [
-        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {scale: 1, filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    project_img_3.style.opacity = "1";
+    project_image_animation(project_img_3);
   };
 
   if (isInViewport(project_img_4) && !project_img_anim_4_done) 
   {
     project_img_anim_4_done = true;
-    project_img_4.animate(
-      [
-        {scale: 0.75, transform: "translate3d(0, 200px, 0);", filter: "blur(3px)", opacity: 0},
-        {transform: "translate3d(0, 100px, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
-        {scale: 1, filter: "blur(0px)", opacity: 1}
-      ],
-      {
-        duration: 500,
-        easing: "ease",
-        iterations: 1
-      },
-    );
-
-    project_img_4.style.opacity = "1";
+    project_image_animation(project_img_4);
   };
 }

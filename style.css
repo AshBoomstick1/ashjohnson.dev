@@ -3,7 +3,7 @@
   --header-light: #22222a;
   --header-dark: #ffd700;
   --text-dark: #ffeda7;
-  --body-light: #ffed68; /* #f8e973, #ffed68*/
+  --body-light: #ffed68; /* #f8e973, #ffed68, #d4c25f, #efdf83*/
   --body-dark: #170820;
   
   --body-left-padding: 100px;
@@ -133,6 +133,13 @@ header a {
 
 header img {
   height: 50px;
+  border-radius: 5px;
+}
+
+#header_logo {
+  display: none;
+  margin-left: 20px;
+  border: 3px light-dark(var(--header-light, black), var(--header-dark, white)) solid;
   border-radius: 5px;
 }
 
@@ -549,6 +556,14 @@ footer img {
   #mobile_nav_bar a {
     font-size: 40px;
     line-height: 60px;
+  }
+
+  #header_logo {
+    display: block;
+  }
+
+  header #title_container {
+    display: none;
   }
 
   #projects img {
