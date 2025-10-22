@@ -19,6 +19,8 @@
 
 body {
     background-color: light-dark(var(--body-light), var(--body-dark)); 
+    background-image: url("images/background.svg");
+    background-size: 2000px;;
     overflow-x: hidden;
     color-scheme: light;
     padding: 0px var(--body-left-padding, 100px);
@@ -218,6 +220,7 @@ header img {
   width: 100%;
   padding: 75px 0px;
   height: calc(100vh - 70px);
+  background-color: var(--body-light);
 }
 
 #intro h2 {
