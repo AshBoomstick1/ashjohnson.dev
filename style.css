@@ -6,7 +6,7 @@
   --body-light: #ffed68; /* #f8e973, #ffed68, #d4c25f, #efdf83*/
   --body-dark: #170820;
   
-  --body-left-padding: 100px;
+  --body-left-padding: 15%; /*400px*/
 }
 
 * {
@@ -33,7 +33,7 @@ h1 {
 
 h2 {
     color: light-dark(var(--header-light, black), var(--header-dark, white));
-    text-align: left;
+    text-align: center;
     padding-bottom: 5px;
     margin-top: 50px;
     margin-left: 0px;
@@ -217,8 +217,10 @@ header img {
 
 #intro {
   width: 100%;
-  padding: 75px 0px;
-  height: calc(100vh - 70px);
+  padding: 35px 0px;
+  height: calc(100vh - 35px);overflow: hidden;
+  overflow: visible;
+  z-index: 0;
 }
 
 #intro h2 {
@@ -226,6 +228,12 @@ header img {
   padding: 0px;
   margin: 0px;
   text-align: center;
+  z-index: 1;
+}
+
+#intro svg {
+  z-index: 100;
+  position: absolute;
 }
 
 #name {
