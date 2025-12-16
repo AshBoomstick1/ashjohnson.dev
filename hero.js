@@ -11,7 +11,7 @@ svg.animate(
     {transform: "rotate(360deg)"},
   ],
   {
-    duration: 20000, //20000
+    duration: 0, //20000
     easing: "linear",
     iterations: Infinity
   },
@@ -54,7 +54,6 @@ let scale = 1;
 
 const width = hero_area.offsetWidth;
 const height = hero_area.offsetHeight - 70;
-const max_layer = 5;
 
 const half_side_length = height/Math.tan(Math.PI/3);
 const mid_point = (x1, y1, x2, y2) => {
@@ -145,7 +144,7 @@ class Point {
     let c = mid_point(this.move_left.x, this.move_left.y, this.move_right.x, this.move_right.y);
     let new_triangle = `<polygon `;
     new_triangle += `points=\"${a[0]},${a[1]} ${b[0]},${b[1]} ${c[0]},${c[1]}\"`;
-    new_triangle += `style=\"fill: rgba(255, 237, 104, 1);fill-rule nonzero;\" `;
+    new_triangle += `style=\"fill: rgba(255, 237, 104, 1);fill-rule nonzero;\" `; //rgba(255, 237, 104, 1), rgba(104, 207, 255, 1)
     new_triangle += ` />`;
     svg.innerHTML += new_triangle;
 
@@ -173,32 +172,35 @@ let search_array = [root_point];
 
 
 
-const traverse_tree = (point) => {
-  console.log(point)
-  console.log(search_array)
+const traverse_tree = (point, search) => {
+  //console.log(point)
+  //console.log(search, search_array.length)
 
-  search_array.shift()
+  search.shift()
 
   if (point.layer < max_layer) {
     if (point.move_right.has_child()) {
-      search_array.unshift(point.move_right);
+      search.unshift(point.move_right);
     }
 
     if (point.move_left.has_child()) {
-      search_array.unshift(point.move_left);
+      search.unshift(point.move_left);
     }
   }
 
   point.draw_triangle();
+  return search;
 }
 
-for(let i = 1; i < 8; i++)
+const max_layer = 8;
+
+for(let i = 0; i < max_layer; i++)
 {
   console.clear()
   search_array = [root_point];
 
   while (search_array.length > 0)
   {
-    traverse_tree(search_array[0]);
+    search_array = traverse_tree(search_array[0], search_array);
   }
 }
