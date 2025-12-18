@@ -11,7 +11,7 @@ svg.animate(
     {transform: "rotate(360deg)"},
   ],
   {
-    duration: 0, //20000
+    duration: 20000, //20000
     easing: "linear",
     iterations: Infinity
   },
@@ -139,27 +139,26 @@ class Point {
   }
 
   draw_triangle() {
-    let a = mid_point(this.x, this.y, this.move_left.x, this.move_left.y);
-    let b = mid_point(this.x, this.y, this.move_right.x, this.move_right.y);
-    let c = mid_point(this.move_left.x, this.move_left.y, this.move_right.x, this.move_right.y);
-    let new_triangle = `<polygon `;
-    new_triangle += `points=\"${a[0]},${a[1]} ${b[0]},${b[1]} ${c[0]},${c[1]}\"`;
-    new_triangle += `style=\"fill: rgba(255, 237, 104, 1);fill-rule nonzero;\" `; //rgba(255, 237, 104, 1), rgba(104, 207, 255, 1)
-    new_triangle += ` />`;
+    const left = this.move_left;
+    const right = this.move_right;
+
+    let a = mid_point(this.x, this.y, left.x, left.y);
+    let b = mid_point(this.x, this.y, right.x, right.y);
+    let c = mid_point(left.x, left.y, right.x, right.y);
+    let new_triangle = `<polygon points=\"${a[0]},${a[1]} ${b[0]},${b[1]} ${c[0]},${c[1]}\" style=\"fill: rgba(255, 237, 104, 1);fill-rule nonzero;\"/>`; //rgba(255, 237, 104, 1), rgba(104, 207, 255, 1)
     svg.innerHTML += new_triangle;
 
     new Point(this, a[0], a[1], this.layer + 1).replace_child_left(this, this.move_left);
     new Point(this, b[0], b[1], this.layer + 1).replace_child_right(this, this.move_right);
-    new Point(this.move_left, c[0], c[1], this.layer + 1).replace_child_right(this.move_left, null);
-    new Point(this.move_right, c[0], c[1], this.layer + 1).replace_child_left(this.move_right, null);
-    //need to make tird point a part of thje tree not just calced during draw because that third poitn would be used to calc the next pouint
-    //console.log("POINT BEING TRIANGLUATED", this)
+    new Point(left, c[0], c[1], this.layer + 1).replace_child_right(this.move_left, null);
+    //new Point(right, c[0], c[1], this.layer + 1).replace_child_left(this.move_right, null);
+    this.move_left.move_right.replace_child_left(this.move_right, null);
   }
 };
 
 let new_triangle = `<polygon `;
 new_triangle += `points=\"${width / 2},${0} ${width/2 - half_side_length},${height} ${width/2 + half_side_length},${height}\"`;
-new_triangle += `style=\"fill:rgba(104, 195, 255, 1);\" `; //#ffeda7, rgba(104, 195, 255, 1)
+new_triangle += `style=\"fill: #ffde4cff\" `; //#ffeda7, rgba(104, 195, 255, 1)
 new_triangle += ` />`;
 svg.innerHTML += new_triangle;
 let triangle_list = [width/2, 0, false, width/2 - half_side_length, height, false, width/2 + half_side_length, height, false]; //false is if the point has been used, true is available
@@ -172,35 +171,62 @@ let search_array = [root_point];
 
 
 
-const traverse_tree = (point, search) => {
-  //console.log(point)
-  //console.log(search, search_array.length)
+const traverse_tree = (point) => {
+  search_array.shift()
 
-  search.shift()
-
+  const left = point.move_left;
+  const right = point.move_right;
   if (point.layer < max_layer) {
-    if (point.move_right.has_child()) {
-      search.unshift(point.move_right);
+    if (right.move_left != null || right.move_right != null) {
+      search_array.unshift(point.move_right);
     }
 
-    if (point.move_left.has_child()) {
-      search.unshift(point.move_left);
+    if (left.move_left != null || left.move_right != null) {
+      search_array.unshift(point.move_left);
     }
   }
 
   point.draw_triangle();
-  return search;
 }
 
-const max_layer = 8;
+let max_layer = 8;
 
-for(let i = 0; i < max_layer; i++)
-{
-  console.clear()
-  search_array = [root_point];
+function generate_layer(delay, i) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (i < 8) {
+        search_array = [root_point];
+        while (search_array.length > 0)
+        {
+          traverse_tree(search_array[0]);
+        }
+        resolve()
+      }
+      else {
+        search_array = [root_point];
+        while (search_array.length > 0)
+        {
+          setTimeout(() => {
+            traverse_tree(search_array[0]);
+          }, delay / 2);
+        }
+        resolve()
+      }
+    }, delay)
+  });
+}
 
-  while (search_array.length > 0)
+
+async function generate_triangle() {
+  for(let i = 0; i < max_layer; i++)
   {
-    search_array = traverse_tree(search_array[0], search_array);
+    if (i < 8) {
+      await generate_layer(max_layer, i);
+    }
+    else {
+      await generate_layer(max_layer * 100, i);
+    }
   }
 }
+
+generate_triangle();
