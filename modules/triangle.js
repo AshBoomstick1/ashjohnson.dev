@@ -211,10 +211,6 @@ function generate_layer(delay, i) {
 
 //generates the whole triangle
 export async function generate_triangle() {
-  //creates the svg
-  svg = document.createElement("svg");
-  svg.id = "hero_svg"
-  hero_area.appendChild(svg)
   svg = document.getElementById("hero_svg");
 
   svg.setAttribute("width", `${hero_area.offsetWidth}`);
