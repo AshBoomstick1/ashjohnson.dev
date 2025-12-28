@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="stylesheet.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+       <a href="https://ashjohnson.dev">ashjohnson.dev</a>
+    </header>
+    <div id="top_level_seperator">
+    <div id="sidePanel">
+      <p><strong>Table of Contents</strong></p>
+      <ul>
+        <li><a href="#prerequisite">Prerequisites</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#set-up">Set-up</a></li>
+        <li><a href="#play">Play</a></li>
+        <li><a href="#edge">Counting Edges</a></li>
+      </ul>
+    </div>
+    <article>
+      <div>
+        <h1>Muggins</h1>
+        <img class="contentImage" alt="img" src="placeolder.png">
+        <p>The classic multiple of 5 Domino game</p>
+      </div>
+      <br>
+      <h2 id="prerequisite">Prerequisites</h2>
+      <ul>
+        <li><p>A standard 0-6 Domino set. You should have 28 Dominos</p></li>
+        <li><p>2-4 Players</p></li>
+        <li><p>Pencil & Paper (for keeping track of score if you want to)</p></li>
+      </ul>
+      <p>
+      <br>
+      <h2 id="objective">Objective</h2>
+      <p>Be the first to run out of Dominos</p>
+      <br>
+      <h2 id="set-up">Set-up</h2>
+      <ol>
+        <li><p>Shuffle all the dominos face-down. Have every player draw 7 dominos (5 if there are 4 players) and keep their hands hidden.</p></li>
+        <li><p>The remaining bones go into the draw pile, also known as the 'Bone Yard'.</p></li>
+        <li>Have the person with the highest double domino (6:6, 5:5, 4:4, etc...) play it to start the game.</li>
+        <li>Play continues clock-wise.</li>
+      </ol>
+      <br>
+      <h2 id="play">Play</h2>
+      <ol>
+        <li><p>If the current player can play a domino, they must.</p></li>
+        <ol>
+          <li><p>They do this by placing a domino in their hand next to end (or any side of the starting domino) of any domino where the ends have the same number.</p></li>
+          <li><p>If the current score is a multiple of 5 (5, 10, 15, 20, etc...) then the current player adds that many points to their score.</p></li>
+          <li><p>Play then continues to the next clock-wise player.</p></li>
+        </ol>
+        <li><p>If the current player couldn't play a domino, they draw one domino from the bone-yard at random and play continues to the next player clock-wise.</p></li>
+      </ol>
+      <br>
+      <h2 id="edge">When do I count the edge?</h2>
+      <ul>
+
+        Any side of a domino that does not have another domino touching it.
+
+      </ul>
+      <p><strong>Exceptions:</strong></p>
+      <ul>
+        <li><p>The center/starting domino's 'short edges'</p></li>
+      </ul>
+    </article>
+    <section></section>
+    </div>
+    <footer>
+
+    </footer>
+  </body>
+</html>
