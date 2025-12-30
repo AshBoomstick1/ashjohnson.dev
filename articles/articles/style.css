@@ -1,0 +1,240 @@
+:root {
+  color-scheme: light dark;
+  --body-light: rgb(253, 253, 253);
+  --body-dark: rgb(28, 25, 31);
+  --header-light: rgb(246, 246, 246);
+  --header-dark: rgb(37, 35, 41);
+  --text-dark: rgb(233, 233, 233);
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: light-dark(var(--body-light), var(--body-dark));
+  box-sizing: border-box;
+}
+
+h1 {
+  color: light-dark(black, var(--text-dark));
+}
+
+h2 {
+  color: light-dark(black, var(--text-dark));
+}
+
+p {
+  color: light-dark(black, var(--text-dark));
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+  padding: 5px;
+  color: light-dark(rgb(33, 66, 255), rgb(122, 142, 255));
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.5s cubic-bezier(0,.9,.03,.42);;
+
+}
+
+img {
+  margin-left: 24px;
+  border: 1px solid black;
+  object-fit:contain;
+}
+
+header {
+  z-index: 10;
+  height: 35px;
+  padding: 20px;
+  background-color: light-dark(var(--header-light), var(--header-dark));
+  border-bottom: 1px solid black;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 35px;
+}
+
+header a {
+  color: light-dark(black, var(--text-dark));
+  font-family: Inter, "IBM Plex Serif", serif;
+}
+
+a:hover {
+  background-color: light-dark(rgba(233, 233, 233, 0.75), rgba(21, 21, 21, 0.75));
+}
+
+#light-dark {
+  width: 35px;
+  height: 35px;
+  float: right;
+  border: 0px;
+  cursor: pointer;
+
+}
+
+.intro {
+  width: 100%;
+  margin-bottom: 30px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 9em 9em;
+}
+
+.intro h1 {
+  margin: 20px 0px 0px 20px;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 4em;
+  line-height: 2em;
+}
+
+.intro p {
+  margin-top: 0px;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.intro ul {
+  padding-inline-start: 0px;
+  line-height: 15px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+.intro img {
+  width:inherit;
+  margin-left: 0px;
+  grid-row: span 2;
+  grid-column: 2;
+  align-self: center;
+}
+
+
+article {
+  padding: 20px;
+  background-color: light-dark(var(--body-light), var(--body-dark));
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+article h2 {
+  font-family: "Lato", sans-serif;
+}
+
+article ol ol {
+  padding-inline-start: 25px;
+}
+
+article li div {
+  width: 100%;
+  margin: 0px;
+  display: block;
+}
+
+article li p {
+  width: fit-content;
+  text-align: left;
+}
+
+#top_level_seperator {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+}
+
+#sidePanel{
+  background-color: light-dark(var(--header-light), var(--header-dark));
+  border-right: 1px solid black;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#sidePanel p {
+  top: 20px;
+  margin-bottom: 0px;
+  position: sticky;
+}
+
+#sidePanel ul {
+  z-index: 5;
+  top: 40px;
+  margin-top: 0px;
+  padding-inline-start: 15px;
+  position: sticky;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  line-height: 25px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+
+/*In Article Drop-Down Images*/
+.imageViewer {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  border-bottom: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: 0px;
+}
+
+.textWithImage {
+  display: inline-flex;
+}
+
+.textWithImage p {
+  margin: 0px;
+  display: inline-flex;
+}
+
+.contentImage {
+  left: 0px;
+  top: 8px;
+  position: relative;
+  display: none;
+}
+
+.caption {
+  color: rgb(103, 103, 103);
+  font-size: 14px;
+}
+
+
+/*Media Queries for repsonsive design*/
+@media screen and (max-width: 1000px) {
+  img {
+    max-width: 20em;
+    max-height: 10em;
+  }
+
+  article {
+    padding: 20px 40px;
+  }
+
+  #top_level_seperator {
+    grid-template-columns: 20% 800% 0px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px){
+
+  img {
+    max-width: 500px;
+    max-height: 350px;
+  }
+
+  #sidePanel {
+    padding: 20px;
+    padding-top: 0px;
+  }
+
+  #sidePanel ul{
+    width: calc(calc(100vw - 700px) / 2);
+  }
+
+  #top_level_seperator {
+    grid-template-columns: calc(calc(100vw - 700px) / 2) 700px calc(calc(100vw - 700px) / 2);
+  }
+}

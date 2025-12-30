@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to play the domino game Muggins/All-Fives">
+    <meta name="keywords" content="muggins, all-fives, how-to, domino, dominos, game, play">
+    <meta name="robots" content="index, nofollow">
+    <meta name="author" content="Ash Johnson">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cutive+Mono&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+       <a href="https://ashjohnson.dev">ashjohnson.dev</a>
+       <img id="light-dark" alt="light-dark" src="./images/dark.svg"></img>
+    </header>
+    <div id="top_level_seperator">
+    <div id="sidePanel">
+      <p><strong>Table of Contents</strong></p>
+      <ul>
+        <li><a href="#prerequisite">Prerequisites</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#set-up">Set-up</a></li>
+        <li><a href="#play">Play</a></li>
+        <li><a href="#edge">Counting Score</a></li>
+      </ul>
+    </div>
+    <article>
+      <div class="intro">
+        <h1>Muggins</h1>
+        <img class="headerImage" alt="img" src="images/muggins.jpg">
+        <ul>
+          <li><p>The classic multiple of 5 Domino game</p></li>
+          <li><p>Written by Ash</p></li>
+          <li><p>Last Updated 12-29-2025</p></li>
+        </ul>
+      </div>
+      <br>
+      <h2 id="prerequisite">Prerequisites</h2>
+      <ul>
+        <li>
+          <div>
+            <div class="textWithImage">
+              <p>A standard 0-6 Domino set. You should have 28 Dominos</p>
+              <img class="imageViewer" alt="/\" src="./images/arrow_light.svg"></img>
+            </div>
+            <img class="contentImage" alt="an image of a full 28 domino set." src="images/28_dominos.jpg">
+          </div>
+        </li>
+        <li><p>2-4 Players</p></li>
+        <li><p>Pencil & Paper (for keeping track of score if you want to)</p></li>
+      </ul>
+      <p>
+      <br>
+      <h2 id="objective">Objective</h2>
+      <p>Be the first to run out of Dominos</p>
+      <br>
+      <h2 id="set-up">Set-up</h2>
+      <ol>
+        <li>
+          <div>
+            <div class="textWithImage">
+              <p>Shuffle all the dominos face-down. Have every player draw 7 dominos (5 if there are 4 players) and keep their hands hidden.</p>
+              <img class="imageViewer" alt="/\" src="./images/arrow_light.svg"></img>
+            </div>
+            <img class="contentImage" alt="an image depicting dominos being shuffled." src="images/bone_yard.jpg">
+          </div>
+        </li>
+        <li><p>The remaining bones go into the draw pile, also known as the 'Bone Yard'.</p></li>
+        <li><p>Have the person with the highest double domino (6:6, 5:5, 4:4, etc...) play it to start the game.</p></li>
+        <li><p>Play continues clock-wise.</p></li>
+      </ol>
+      <img alt="an image depicting an overview of the instructions above" src="images/overview.jpg">
+      <br>
+      <h2 id="play">Play</h2>
+      <ol>
+        <li><p>If the current player can play a domino, they must.</p></li>
+        <ol>
+          <li>
+            <div>
+              <div class="textWithImage">
+                <p>
+                  They do this by placing a domino in their hand next to end (or any side of the starting domino) of any domino where the ends have the same number. 
+                  <br>
+                  If the domino is a double, you must play it perpenicular to the other domino.
+                </p>
+                <img class="imageViewer" alt="/\" src="./images/arrow_light.svg"></img>
+              </div>
+              <div class="contentImage">
+                <img alt="an image depicting dominos being played" src="images/muggins.jpg">
+                <p class="caption">The 4:4 is placed side-ways and counted as 8 points instead of 4 points. The 3:6 at the far left is an example of how you can bend the dominos path if your running out of room on the table.</p>
+              </div>
+            </div>
+          </li>
+          <li><p>If the current score is a multiple of 5 (5, 10, 15, 20, etc...) then the current player adds that many points to their score.</p></li>
+          <li><p>Play then continues to the next clock-wise player.</p></li>
+        </ol>
+        <li><p>If the current player couldn't play a domino, they draw one domino from the bone-yard at random and play continues to the next player clock-wise.</p></li>
+      </ol>
+      <br>
+      <h2 id="edge">How do I count the score?</h2>
+      <ul>
+        <li>
+          <div>
+            <div class="textWithImage">
+              <p>The starting domino when it is first placed, or it only has one domino touching it and it's placed on the long side.</p>
+              <img class="imageViewer" alt="/\" src="./images/arrow_light.svg"></img>
+            </div>
+            <div class="contentImage">
+              <img alt="an image depicting a 5:5 being played" src="images/point_5.jpg">
+              <p class="caption">This would have a score of 10 and the player who started with this play would score 10 points.</p>
+              <img alt="an image depicting a 6:6 being played with a 6:2 being played on it's long side" src="images/point_1.jpg">
+              <p class="caption">This would have a score of 14, 2 from the 6:2 and 12 from the 6:6.</p>
+            </div>
+          </div>
+        </li>
+        <li><p>Any exposed domino end.</p></li>
+      </ul>
+      <p><strong>Exceptions:</strong></p>
+      <ul>
+        <li>
+          <div>
+            <div class="textWithImage">
+              <p>The center/starting domino's 'short edges'</p>
+              <img class="imageViewer" alt="/\" src="./images/arrow_light.svg"></img>
+            </div>
+            <div class="contentImage">
+              <img alt="an image depicting a 6:6 with a 6:2 on the long edge and a 6:3 on a short edge of the 6:6" src="images/point_2.jpg">
+              <p class="caption">This would have a score of 5. You don't count the 'short edge' of the starting domino, so the only points come from the ends of the other two dominos.</p>
+              <img alt="an image depicting a 6:6 with a 6:2 on the long edge and a 6:3 on the other long edge of the 6:6" src="images/point_3.jpg">
+              <p class="caption">This would also have a score of 5 for the same reason as above.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </article>
+    <section></section>
+    </div>
+    <footer>
+
+    </footer>
+    <script src="images.js"></script>
+    <script src="light-dark.js"></script>
+  </body>
+</html>
