@@ -1,17 +1,35 @@
+:root {
+  color-scheme: light dark;
+  --body-light: rgb(253, 253, 253);
+  --body-dark: rgb(28, 25, 31);
+  --header-light: rgb(246, 246, 246);
+  --header-dark: rgb(37, 35, 41);
+  --text-dark: rgb(233, 233, 233);
+}
+
 body {
   margin: 0px;
   padding: 0px;
-  background-color: rgb(255, 255, 255);
+  background-color: light-dark(var(--body-light), var(--body-dark));
   box-sizing: border-box;
 }
 
+h1 {
+  color: light-dark(black, var(--text-dark));
+}
+
+h2 {
+  color: light-dark(black, var(--text-dark));
+}
+
 p {
+  color: light-dark(black, var(--text-dark));
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
   padding: 5px;
-  color: rgb(33, 66, 255);
+  color: light-dark(rgb(33, 66, 255), rgb(122, 142, 255));
   background-color: rgba(0, 0, 0, 0);
   border-radius: 5px;
   text-decoration: none;
@@ -29,7 +47,7 @@ header {
   z-index: 10;
   height: 35px;
   padding: 20px;
-  background-color: rgb(246, 246, 246);
+  background-color: light-dark(var(--header-light), var(--header-dark));
   border-bottom: 1px solid black;
   font-size: 25px;
   font-weight: 700;
@@ -37,12 +55,21 @@ header {
 }
 
 header a {
-  color: black;
+  color: light-dark(black, var(--text-dark));
   font-family: Inter, "IBM Plex Serif", serif;
 }
 
 a:hover {
-  background-color: rgba(233, 233, 233, 0.75);
+  background-color: light-dark(rgba(233, 233, 233, 0.75), rgba(21, 21, 21, 0.75));
+}
+
+#light-dark {
+  width: 35px;
+  height: 35px;
+  float: right;
+  border: 0px;
+  cursor: pointer;
+
 }
 
 .intro {
@@ -85,7 +112,7 @@ a:hover {
 
 article {
   padding: 20px;
-  background-color: rgb(253, 253, 253);
+  background-color: light-dark(var(--body-light), var(--body-dark));
   grid-column-start: 2;
   grid-column-end: 3;
 }
@@ -116,7 +143,7 @@ article li p {
 }
 
 #sidePanel{
-  background-color: rgb(246, 246, 246);
+  background-color: light-dark(var(--header-light), var(--header-dark));
   border-right: 1px solid black;
   grid-column-start: 1;
   grid-column-end: 2;
