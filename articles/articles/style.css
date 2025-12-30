@@ -3,89 +3,62 @@ body {
   padding: 0px;
   background-color: rgb(255, 255, 255);
   box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-header {
-  padding: 20px;
-  font-size: 25px;
-  line-height: 35px;
-  font-weight: 700;
-  height: 35px;
-  background-color: rgb(246, 246, 246);
-  border-bottom: 1px solid black;
-  z-index: 10;
-}
-
-header a {
-  color: black;
-}
-
-a {
-  color: rgb(33, 66, 255);
-  text-decoration: none;
-  transition: background-color 0.5s cubic-bezier(0,.9,.03,.42);;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 5px;
-  padding: 5px;
-}
-
-a:hover {
-  background-color: rgba(233, 233, 233, 0.75);
-}
-
-header a {
-  font-family: Inter, "IBM Plex Serif", serif;
-}
-
-#top_level_seperator {
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 15% 70% 15%;
-}
-
-#sidePanel{
-  grid-column-start: 1;
-  grid-column-end: 2;
-  background-color: rgb(246, 246, 246);
-  border-right: 1px solid black;
-}
-
-#sidePanel ul {
-  top: 40px;
-  z-index: 5;
-  margin-top: 0px;
-  text-decoration: none;
-  position: sticky;
-  list-style-type: none;
-  list-style-position: inside;
-  padding-inline-start: 15px;
-  font-family: "Poppins", sans-serif;
-  line-height: 25px;
-}
-
-#sidePanel p {
-  top: 20px;
-  position: sticky;
-}
-
-article {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  background-color: rgb(253, 253, 253);
-  padding: 20px;
 }
 
 p {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+a {
+  padding: 5px;
+  color: rgb(33, 66, 255);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.5s cubic-bezier(0,.9,.03,.42);;
+
+}
+
+img {
+  margin-left: 24px;
+  border: 1px solid black;
+  object-fit:contain;
+}
+
+header {
+  z-index: 10;
+  height: 35px;
+  padding: 20px;
+  background-color: rgb(246, 246, 246);
+  border-bottom: 1px solid black;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 35px;
+}
+
+header a {
+  color: black;
+  font-family: Inter, "IBM Plex Serif", serif;
+}
+
+a:hover {
+  background-color: rgba(233, 233, 233, 0.75);
+}
+
+
+article {
+  padding: 20px;
+  background-color: rgb(253, 253, 253);
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
 article h1 {
   margin-left: 20px;
   margin-bottom: 0px;
   text-align: left;
-  font-size: 4em;
   font-family: "Poppins", sans-serif;
+  font-size: 4em;
 }
 
 article h2 {
@@ -108,50 +81,59 @@ article ol ol {
   padding-inline-start: 25px;
 }
 
-.headerImage {
-  width: 300px;
-  height: 250px;
-  border: 1px solid black;
-  object-fit:cover;
-}
-
-img {
-  border: 1px solid black;
-  object-fit:contain;
-  margin-left: 24px;
-}
-
-.contentImage {
-  position: relative;
-  left: 0px;
-  top: 8px;
-  display: none;
-}
-
-.caption {
-  color: rgb(103, 103, 103);
-  font-size: 14px;
-}
-
 article li div {
   width: 100%;
-  display: block;
   margin: 0px;
+  display: block;
 }
 
 article li p {
-  text-align: left;
   width: fit-content;
+  text-align: left;
 }
 
+#top_level_seperator {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+}
+
+#sidePanel{
+  background-color: rgb(246, 246, 246);
+  border-right: 1px solid black;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#sidePanel p {
+  top: 20px;
+  margin-bottom: 0px;
+  position: sticky;
+}
+
+#sidePanel ul {
+  z-index: 5;
+  top: 40px;
+  margin-top: 0px;
+  padding-inline-start: 15px;
+  position: sticky;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  line-height: 25px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+
+/*In Article Drop-Down Images*/
 .imageViewer {
-  margin-left: 8px;
   width: 20px;
   height: 20px;
+  margin-left: 8px;
   border-bottom: 0px;
-  cursor: pointer;
   display: inline-block;
-  border: 0px;;
+  cursor: pointer;
+  border: 0px;
 }
 
 .textWithImage {
@@ -163,13 +145,32 @@ article li p {
   display: inline-flex;
 }
 
-@media screen and (max-width: 900px) {
+.contentImage {
+  left: 0px;
+  top: 8px;
+  position: relative;
+  display: none;
+}
+
+.caption {
+  color: rgb(103, 103, 103);
+  font-size: 14px;
+}
+
+
+/*Media Queries for repsonsive design*/
+@media screen and (max-width: 1000px) {
+  img {
+    max-width: 20em;
+    max-height: 10em;
+  }
+
   article {
-    padding: 20px 100px;
+    padding: 20px 40px;
   }
 
   #top_level_seperator {
-    grid-template-columns: 0px 100% 0px;
+    grid-template-columns: 20% 800% 0px;
   }
 }
 
