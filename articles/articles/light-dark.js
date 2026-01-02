@@ -10,12 +10,12 @@ const changeColor = () => {
     
     const turn_dark = light_dark_button.animate([
             {filter: "blur(1px)", transform: "rotate(0)"},
-            {filter: "blur(2px)",transform: "translate3d(0px, -20px, 0px)", transform: "rotate(360deg)"},
+            {filter: "blur(2px)", transform: "rotate(360deg)"},
             {filter: "blur(4px)", transform: "rotate(1400deg)"}
         ],
         {
             duration: 500,
-            easing: "ease-in",
+            easing: "cubic-bezier(.6,-0.02,1,.26)",
             iterations: 1
         },
     );
@@ -31,15 +31,16 @@ const changeColor = () => {
   else if (body[0].style.colorScheme == "dark")
   {
     body[0].style.colorScheme = "light";
+    light_dark_button.src = "./images/light2.svg";
         
     const turn_light = light_dark_button.animate([
-            {filter: "blur(1px)", transform: "rotate(0)"},
-            {filter: "blur(2px)",transform: "translate3d(0px, -20px, 0px)", transform: "rotate(360deg)"},
-            {filter: "blur(0px)", transform: "rotate(720deg)"}
+            {filter: "blur(0px)", transform: "rotate(0)"},
+            {filter: "blur(3px)"},
+            {filter: "blur(5px)", transform: "rotate(720deg)"}
         ],
         {
             duration: 500,
-            easing: "ease-in",
+            easing: "cubic-bezier(.6,-0.02,1,.26)",
             iterations: 1
         },
     );
