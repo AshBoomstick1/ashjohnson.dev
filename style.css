@@ -410,9 +410,14 @@ footer img {
 #credits a {
   left: 0px;
   margin: 0px;
-  padding: 0px;
+  padding: 5px;
   line-height: 18px;
   font-size: 15px;
+  transition: background-color 100ms ease;
+}
+
+#credits a:hover {
+  background-color: rgba(163, 163, 163, 0.273);
 }
 
 #credits li img{
