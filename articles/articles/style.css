@@ -63,13 +63,53 @@ a:hover {
   background-color: light-dark(rgba(233, 233, 233, 0.75), rgba(21, 21, 21, 0.75));
 }
 
+#mobileTableOfContents {
+  width: 35px;
+  height: 35px;
+  float: right;
+  border: 0px;
+  cursor: pointer;
+}
+
+#tableOfContents {
+  z-index: 20;
+  width: 100%;
+  height: max-content;
+  padding: 20px;
+  background-color: rgba(214, 214, 214, 0.462);
+  backdrop-filter: blur(10px);
+  display: none;
+  position: absolute;
+}
+
+#tableOfContents p {
+  margin: 0px;
+  font-size: 50px;
+}
+
+#tableOfContents ul {
+  padding-inline-start: 0px;
+}
+
+#tableOfContents li {
+  text-decoration: none;
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+#tableOfContents a {
+  margin: 0px;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  line-height: 35px;
+}
+
 #light-dark {
   width: 35px;
   height: 35px;
   float: right;
   border: 0px;
   cursor: pointer;
-
 }
 
 .intro {
@@ -236,6 +276,10 @@ article li p {
     padding: 10px;
   }
 
+  #mobileTableOfContents {
+    display: block;
+  }
+
   #sidePanel {
     display: none;
   }  
@@ -294,6 +338,10 @@ article li p {
   img {
     max-width: 500px;
     max-height: 350px;
+  }
+
+  #mobileTableOfContents {
+    display: none;
   }
 
   #sidePanel {
