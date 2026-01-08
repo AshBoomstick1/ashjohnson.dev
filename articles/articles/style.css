@@ -34,7 +34,6 @@ a {
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.5s cubic-bezier(0,.9,.03,.42);;
-
 }
 
 img {
@@ -241,6 +240,17 @@ article li p {
   font-size: 14px;
 }
 
+footer {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  border-top: 1px black solid;
+  display: inline-flex;
+}
+
+footer * {
+  font-family: "Poppins", sans-serif;
+}
 
 /*Media Queries for repsonsive design*/
 @media screen and (orientation: portrait) {
