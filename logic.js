@@ -172,7 +172,6 @@ project_img_4.style.opacity = "0";
 const isInViewport = (element) => {
   let bounding = element.getBoundingClientRect();
   if (bounding.top >= 0 && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + (element.offsetHeight / 2)) {
-    console.log(element);
     return true;
   } else {
     return false;
@@ -182,8 +181,8 @@ const isInViewport = (element) => {
 const header_animation = (element) => {
   element.animate(
     [
-      {transform: "translate3d(-100px, 0, 0);", filter: "blur(3px)", opacity: 0},
-      {transform: "translate3d(-50px, 0, 0)", filter: "blur(2px)", opacity: 0, offset: 0.3},
+      {transform: "translate3d(-100px, 0px, 0px)", filter: "blur(3px)", opacity: 0},
+      {transform: "translate3d(-50px, 0px, 0px)", filter: "blur(2px)", opacity: 0, offset: 0.3},
       {filter: "blur(0px)", opacity: 1}
     ],
     {

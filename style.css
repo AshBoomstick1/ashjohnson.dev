@@ -41,6 +41,7 @@ h2 {
     font-family: "Cinzel", serif;
     position: relative;
     z-index: 20;
+    display: none;
 }
 
 h3 {
@@ -102,7 +103,7 @@ section {
 }
 
 header {
-  margin-left: -100px;
+  left: 0px;
   width: 100%;
   position: fixed;
   padding: 10px;

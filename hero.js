@@ -20,5 +20,5 @@ const pick_hero = () => {
 const hero_list = [generate_triangle, stripes];
 //pick_hero();
 //stripes();
-generate_triangle();
-//graph();
+//generate_triangle();
+graph();

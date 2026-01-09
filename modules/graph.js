@@ -1,60 +1,125 @@
 let hero_area = document.getElementById("intro");
 let body = document.getElementsByTagName("body")[0];
+let intro = document.getElementById("intro");
 
 const width = body.offsetWidth;
 const height = hero_area.offsetHeight + 140;
 
-const setAnimation = (point) => {
-    const cx = point.getAttribute('cx');
-    const cy = point.getAttribute('cy');
+let overDue = 0;
 
-    const animation = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
-    animation.setAttribute('begin', "0s");
-    animation.setAttribute('dur', `${Math.floor(Math.random() * 10 + 7)}s`);
+const setAnimation = (point) => {
+
+  const width = body.offsetWidth;
+  const height = hero_area.offsetHeight + 140;
+
+    const cx = point.getAttribute("cx");
+    const cy = point.getAttribute("cy");
+
     let endX;
     let endY;
+
+    //finds to what x,y the point will move to
+    //will the point hit the top & bottom sides or the left and right sides
     if (Math.floor(Math.random() * 2) == 0) {
+          //hit top/bottom
         if (Math.floor(Math.random() * 2) == 0) {
-             endX = (Math.random() * (width + 80)) - 40;
-             endY = -40;
+          //hits top
+          endX = (Math.random() * (width + (overDue * 2))) - overDue
+          endY = cy * -1 - overDue;
         } else {
-             endX = (Math.random() * (width + 80)) - 40;
-             endY = height + 40;
+          //hits bottom
+          endX = (Math.random() * (width + (overDue * 2))) - overDue;
+          endY = height - cy + overDue;
         }
     } else {
+     //hit left/right
         if (Math.floor(Math.random() * 2) == 0) {
-             endX = -40;
-             endY = (Math.random() * (height + 80)) - 40;
+          //hit left
+          endX = cx * -1 - overDue;
+          endY = (Math.random() * (height + (overDue * 2))) - overDue;
         } else {
-             endX = width + 40;
-             endY = (Math.random() * (height + 80)) - 40;
+          //hit right
+          endX = width - cx + overDue;
+          endY = (Math.random() * (height + (overDue * 2))) - overDue;
         }
     }
-    animation.setAttribute('path', `M${point.getAttribute("cx")},${point.getAttribute("cy")} ${endX},${endY}`)
-    animation.setAttribute('repeatCount', "1");
-    point.appendChild(animation);
-    let e = point.getAnimations()[0];
-    point.addEventListener("animationend", function (e) {
-        e.setAttribute("fill", "#000");
-        if (Math.floor(Math.random() * 2) == 0) {
-            if (Math.floor(Math.random() * 2) == 0) {
-                 endX = (Math.random() * (width + 80)) - 40;
-                 endY = -40;
-            } else {
-                 endX = (Math.random() * (width + 80)) - 40;
-                 endY = height + 40;
-            }
-            } else {
-            if (Math.floor(Math.random() * 2) == 0) {
-                 endX = -40;
-                 endY = (Math.random() * (height + 80)) - 40;
-            } else {
-                 endX = width + 40;
-                 endY = (Math.random() * (height + 80)) - 40;
-            }
-        }
-        //this.setAttribute("path", `M${point.getAttribute("cx")},${point.getAttribute("cy")} ${endX},${endY}`)
-    }); 
+
+    console.log("WIDTH & HEIGHT: ", width, height, "ENDX AND END Y: ", (+endX + +cx), (+endY + +cy));
+
+    const move = point.animate([
+            {transform: `translate3d(0px, 0px, 0px)`},
+            {transform: `translate3d(${endX}px, ${endY}px, 0px)`, offset: 1.0},
+        ],
+        {
+            duration: Math.floor(Math.random() * 10 + 7) * 1000,
+            easing: "linear",
+            iterations: 1
+        },
+    );
+    
+    move.onfinish = () => {
+      point.setAttribute("cx", +endX + +cx);
+      point.setAttribute("cy", +endY + +cy);
+      recursiveAnimation(point)
+    }
+}
+
+const recursiveAnimation = (point) => {
+  const width = body.offsetWidth;
+  const height = hero_area.offsetHeight + 140;
+
+  const cx = point.getAttribute("cx");
+  const cy = point.getAttribute("cy");
+
+  let endX;
+  let endY;
+
+  if (Math.floor(Math.random() * 2) == 0) {
+    //hit top/bottom
+      if (Math.floor(Math.random() * 2) == 0) {
+        //hits top
+        endX = (Math.random() * (width + (overDue * 2))) - overDue
+        endY = cy * -1 - overDue;
+     } else {
+       //hits bottom
+       endX = (Math.random() * (width + (overDue * 2))) - overDue;
+       endY = height - cy + overDue;
+     }
+    } else {
+      //hit left/right
+      if (Math.floor(Math.random() * 2) == 0) {
+        //hit left
+        endX = cx * -1 - overDue;
+        endY = (Math.random() * (height + (overDue * 2))) - overDue;
+      } else {
+        //hit right
+        endX = width - cx + overDue;
+        endY = (Math.random() * (height + (overDue * 2))) - overDue;
+      }
+    }
+
+    console.log("WIDTH & HEIGHT: ", width, height, "ENDX AND END Y: ", +endX + +cx, +endY + +cy);
+
+    //console.log("(" + point.getAttribute("cx") +", " + point.getAttribute("cy") + ") (" + endX + ", " + endY + ")")
+    
+    let move = point.animate(
+    [
+      {transform: `translate3d(${point.getAttribute("cx")}px, ${point.getAttribute("cy")}px, 0px)`},
+      {transform: `translate3d(${endX}px, ${endY}px, 0px)`},
+    ],
+    {
+      duration: Math.floor(Math.random() * 10 + 7) * 1000,
+      easing: "linear",
+      iterations: 1
+    },
+    );
+
+    move.onfinish = () => {
+     point.setAttribute("cx", +endX + +cx);
+     point.setAttribute("cy", +endY + +cy);
+     recursiveAnimation(point);
+    }
+
 }
 
 export const graph = () => {
@@ -66,10 +131,10 @@ export const graph = () => {
     svg.setAttribute("height", `${height}px`);
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
-    svg.style.backgroundColor = "red";
+    svg.style.backgroundColor = "purple";
     const point_count = Math.floor((width * height) / 4000)
     //create points
-    for (let i = 0; i < point_count; i++) {
+    for (let i = 0; i < point_count; i++) { //point_count
         const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         point.setAttribute('cx', `${Math.random() * width}`);
         point.setAttribute('cy', `${Math.random() * height}`);
