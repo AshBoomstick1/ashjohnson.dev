@@ -3,14 +3,14 @@ let body = document.getElementsByTagName("body")[0];
 let svg = document.getElementById("hero_svg")
 
 const width = body.offsetWidth;
-const height = hero_area.offsetHeight + 140;
+const height = hero_area.offsetHeight; //140
 
 const overDue = 0;
 
 function getPosition(el) {
   var rect = el.getBoundingClientRect()
   if (true) {
-    //window.requestAnimationFrame(getPosition);
+    window.requestAnimationFrame(draw_lines);
   }
   return([rect.top, rect.left]);
 }
@@ -60,9 +60,9 @@ const draw_lines = (point, pointCount) => {
     //svg.removeChild(currentLines[i])
   //}
   if (document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line").length > pointCount) {
-    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
-    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
-    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
+    for (let i = 0; i < closestList.length; i++) {
+      svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
+    }
   }
   
 
@@ -76,17 +76,12 @@ const draw_lines = (point, pointCount) => {
     line.setAttribute('y2', `${closestCoords[1]}`);
     line.setAttribute('stroke-width', `1`)
     line.setAttribute('stroke', "#ffd900ff");
-    line.setAttribute("className", `lineGroup${pointIdx}`);
 
     svg.appendChild(line)
   }
 }
 
 const setAnimation = (point) => {
-
-  const width = body.offsetWidth;
-  const height = hero_area.offsetHeight + 140;
-
     const cx = point.getAttribute("cx");
     const cy = point.getAttribute("cy");
 
@@ -99,11 +94,11 @@ const setAnimation = (point) => {
           //hit top/bottom
         if (Math.floor(Math.random() * 2) == 0) {
           //hits top
-          endX = (Math.random() * (width + (overDue * 2))) - overDue
+          endX = (Math.random() * (width + (overDue * 2)) - cx) - overDue
           endY = cy * -1 - overDue;
         } else {
           //hits bottom
-          endX = (Math.random() * (width + (overDue * 2))) - overDue;
+          endX = (Math.random() * (width + (overDue * 2)) - cx) - overDue;
           endY = height - cy + overDue;
         }
     } else {
@@ -111,11 +106,11 @@ const setAnimation = (point) => {
         if (Math.floor(Math.random() * 2) == 0) {
           //hit left
           endX = cx * -1 - overDue;
-          endY = (Math.random() * (height + (overDue * 2))) - overDue;
+          endY = (Math.random() * (height + (overDue * 2)) - cy) - overDue;
         } else {
           //hit right
           endX = width - cx + overDue;
-          endY = (Math.random() * (height + (overDue * 2))) - overDue;
+          endY = (Math.random() * (height + (overDue * 2)) - cy) - overDue;
         }
     }
 
@@ -133,13 +128,12 @@ const setAnimation = (point) => {
     move.onfinish = () => {
       point.setAttribute("cx", +endX + +cx);
       point.setAttribute("cy", +endY + +cy);
+      //console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
       recursiveAnimation(point)
     }
 }
 
 const recursiveAnimation = (point) => {
-  const width = body.offsetWidth;
-  const height = hero_area.offsetHeight + 140;
 
   const cx = point.getAttribute("cx");
   const cy = point.getAttribute("cy");
@@ -151,11 +145,11 @@ const recursiveAnimation = (point) => {
     //hit top/bottom
       if ((Math.floor(Math.random() * 2) == 0 && cy != 0) || cy == height) {
         //hits top
-        endX = (Math.random() * (width + (overDue * 2))) - overDue
+        endX = (Math.random() * (width + (overDue * 2)) - cx) - overDue
         endY = cy * -1 - overDue;
      } else {
        //hits bottom
-       endX = (Math.random() * (width + (overDue * 2))) - overDue;
+       endX = (Math.random() * (width + (overDue * 2)) - cx) - overDue;
        endY = height - cy + overDue;
      }
     } else {
@@ -163,11 +157,11 @@ const recursiveAnimation = (point) => {
       if ((Math.floor(Math.random() * 2) == 0 && cx != 0) || cx == width) {
         //hit left
         endX = cx * -1 - overDue;
-        endY = (Math.random() * (height + (overDue * 2))) - overDue;
+        endY = (Math.random() * (height + (overDue * 2)) - cy) - overDue;
       } else {
         //hit right
         endX = width - cx + overDue;
-        endY = (Math.random() * (height + (overDue * 2))) - overDue;
+        endY = (Math.random() * (height + (overDue * 2)) - cy) - overDue;
       }
     }
     
@@ -184,10 +178,10 @@ const recursiveAnimation = (point) => {
     );
 
     move.onfinish = () => {
-     point.setAttribute("cx", +endX + +cx);
-     point.setAttribute("cy", +endY + +cy);
-     console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
-     recursiveAnimation(point);
+      console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
+      point.setAttribute("cx", +endX + +cx);
+      point.setAttribute("cy", +endY + +cy);
+      recursiveAnimation(point);
     }
 
 }
@@ -200,15 +194,15 @@ export const graph = () => {
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
     svg.style.backgroundColor = "purple";
-    const point_count = Math.floor((width * height) / 4000) //4000
+    const point_count = Math.floor((width * height) / 8000) //4000
     //create points
-    for (let i = 0; i < 20; i++) { //point_count
+    for (let i = 0; i < 10; i++) { //point_count
         const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         point.setAttribute('cx', `${Math.random() * width}`);
         point.setAttribute('cy', `${Math.random() * height}`);
         point.setAttribute('r', `3`)
         point.setAttribute('fill', "#ffd900ff");
-        //setInterval(draw_lines, 0, point, point_count)
+        setInterval(draw_lines, 0, point, point_count)
         setAnimation(point);
 
         svg.appendChild(point)
