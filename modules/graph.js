@@ -5,7 +5,7 @@ let svg = document.getElementById("hero_svg")
 const width = body.offsetWidth;
 const height = hero_area.offsetHeight; //140
 
-const pointCount = Math.floor((width * height) / 64000) //4000
+const pointCount = 20//Math.floor((width * height) / 64000) //4000
 const numOfLines = 3;
 const overDue = 40;
 const animationSpeed = 5000;
@@ -16,7 +16,7 @@ function getPosition(el) {
 }
 
 const getDistance = (x1, y1, x2, y2) => {
-  return Math.abs(Math.pow((x1 - x2),2) + Math.pow((y1 - y2), 2));
+  return Math.abs(Math.pow((x2 - x1),2) + Math.pow((y2 - y1), 2));
 }
 
 const getClosest = (point) => {
@@ -26,24 +26,28 @@ const getClosest = (point) => {
   for (let i = 0; i < pointCount; i++) {
     if (point != svg.children[i]) {
       const coords = getPosition(svg.children[i])
-      pointCoordList.push(coords[0], coords[1]);
+      pointCoordList.push(coords[0], coords[1], i);
     }
   }
 
   let pointCoords = getPosition(point);
+  //console.log(pointCoordList)
 
   for (let i = 0; i < numOfLines; i++) {
     let closest = [0, getDistance(pointCoords[0], pointCoords[1], pointCoordList[0], pointCoordList[1])];
-    for (let j = 2; j < pointCoordList.length; j += 2) {
+    for (let j = 3; j < pointCoordList.length; j += 3) {
       let distance = getDistance(pointCoords[0], pointCoords[1], pointCoordList[j], pointCoordList[j + 1]);
-      console.log(i, j, distance)
+      //console.log(Math.floor(distance) < Math.floor(closest[1]), svg.children[closest[0] / 3], svg.children[j/3])
       if (distance < closest[1]) {
         closest = [j, distance];
       }
     }
-    closestList.push(svg.children[closest[0] / 2]);
-    pointCoordList.splice(closest[0], 2);
+    closestList.push(svg.children[pointCoordList[closest[0] + 2]]);
+    //console.log("CLOSEST: ", closest[1], point, svg.children[closest[0] / 3], closest[2]);
+    pointCoordList.splice(closest[0], 3);
   }
+
+  //console.log(closestList);
 
   return closestList;
 }
