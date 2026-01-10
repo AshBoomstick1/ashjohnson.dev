@@ -1,11 +1,86 @@
 let hero_area = document.getElementById("intro");
 let body = document.getElementsByTagName("body")[0];
-let intro = document.getElementById("intro");
+let svg = document.getElementById("hero_svg")
 
 const width = body.offsetWidth;
 const height = hero_area.offsetHeight + 140;
 
-let overDue = 0;
+const overDue = 0;
+
+function getPosition(el) {
+  var rect = el.getBoundingClientRect()
+  if (true) {
+    //window.requestAnimationFrame(getPosition);
+  }
+  return([rect.top, rect.left]);
+}
+
+const getDistance = (x1, y1, x2, y2) => {
+  return Math.abs(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
+}
+
+const getClosest = (point) => {
+  let pointCoordList = [];
+  let closestList = [];
+  let numOfClosestToRecord = 1;
+
+  for (let i = 0; i < svg.children.length; i++) {
+    if (point != svg.children[i]) {
+      const coords = getPosition(svg.children[i])
+      pointCoordList.push(coords[0], coords[1]);
+    }
+  }
+
+  let pointCoords = getPosition(point);
+
+  for (let i = 0; i < numOfClosestToRecord; i++) {
+    let closest = [0, getDistance(pointCoords[0], pointCoords[1], pointCoordList[0], pointCoordList[1])];
+    for (let j = 2; j < pointCoordList.length; j += 2) {
+      let distance = getDistance(pointCoords[0], pointCoords[1], pointCoordList[j], pointCoordList[j + 1]);
+      if (distance < closest[1]) {
+        closest = [j, distance];
+      }
+    }
+    closestList.push(svg.children[closest[0] / 2]);
+    pointCoordList.splice(closest[0], 2);
+  }
+
+  return closestList;
+}
+
+const draw_lines = (point, pointCount) => {
+  let closestList = getClosest(point)
+  let pointIdx = 0;
+  let tempPoint = point
+  while( (tempPoint = tempPoint.previousSibling) != null ) pointIdx++;
+
+  //let currentLines = document.getElementsByClassName(`lineGroup${pointIdx}`);
+  //for (let i = 0; i < currentLines.length; i++) {
+    //currentLines[i].remove();
+    //svg.removeChild(currentLines[i])
+  //}
+  if (document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line").length > pointCount) {
+    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
+    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
+    svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
+  }
+  
+
+  for (let i = 0; i < closestList.length; i++) {
+    let pointCoords = getPosition(point);
+    let closestCoords = getPosition(closestList[i]);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', `${pointCoords[0]}`);
+    line.setAttribute('y1', `${pointCoords[1]}`);
+    line.setAttribute('x2', `${closestCoords[0]}`);
+    line.setAttribute('y2', `${closestCoords[1]}`);
+    line.setAttribute('stroke-width', `1`)
+    line.setAttribute('stroke', "#ffd900ff");
+    line.setAttribute("className", `lineGroup${pointIdx}`);
+
+    svg.appendChild(line)
+  }
+}
 
 const setAnimation = (point) => {
 
@@ -44,14 +119,12 @@ const setAnimation = (point) => {
         }
     }
 
-    console.log("WIDTH & HEIGHT: ", width, height, "ENDX AND END Y: ", (+endX + +cx), (+endY + +cy));
-
     const move = point.animate([
             {transform: `translate3d(0px, 0px, 0px)`},
             {transform: `translate3d(${endX}px, ${endY}px, 0px)`, offset: 1.0},
         ],
         {
-            duration: Math.floor(Math.random() * 10 + 7) * 1000,
+            duration: Math.floor(Math.random() * 10 + 7) * 100,
             easing: "linear",
             iterations: 1
         },
@@ -76,7 +149,7 @@ const recursiveAnimation = (point) => {
 
   if (Math.floor(Math.random() * 2) == 0) {
     //hit top/bottom
-      if (Math.floor(Math.random() * 2) == 0) {
+      if ((Math.floor(Math.random() * 2) == 0 && cy != 0) || cy == height) {
         //hits top
         endX = (Math.random() * (width + (overDue * 2))) - overDue
         endY = cy * -1 - overDue;
@@ -87,7 +160,7 @@ const recursiveAnimation = (point) => {
      }
     } else {
       //hit left/right
-      if (Math.floor(Math.random() * 2) == 0) {
+      if ((Math.floor(Math.random() * 2) == 0 && cx != 0) || cx == width) {
         //hit left
         endX = cx * -1 - overDue;
         endY = (Math.random() * (height + (overDue * 2))) - overDue;
@@ -97,10 +170,6 @@ const recursiveAnimation = (point) => {
         endY = (Math.random() * (height + (overDue * 2))) - overDue;
       }
     }
-
-    console.log("WIDTH & HEIGHT: ", width, height, "ENDX AND END Y: ", +endX + +cx, +endY + +cy);
-
-    //console.log("(" + point.getAttribute("cx") +", " + point.getAttribute("cy") + ") (" + endX + ", " + endY + ")")
     
     let move = point.animate(
     [
@@ -117,14 +186,13 @@ const recursiveAnimation = (point) => {
     move.onfinish = () => {
      point.setAttribute("cx", +endX + +cx);
      point.setAttribute("cy", +endY + +cy);
+     console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
      recursiveAnimation(point);
     }
 
 }
 
 export const graph = () => {
-    let svg = document.getElementById("hero_svg")
-
     svg.setAttribute("style", "top: 0px; left: 0px;");
     
     svg.setAttribute("width", `${width}px`);
@@ -132,15 +200,15 @@ export const graph = () => {
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
     svg.style.backgroundColor = "purple";
-    const point_count = Math.floor((width * height) / 4000)
+    const point_count = Math.floor((width * height) / 4000) //4000
     //create points
-    for (let i = 0; i < point_count; i++) { //point_count
+    for (let i = 0; i < 20; i++) { //point_count
         const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         point.setAttribute('cx', `${Math.random() * width}`);
         point.setAttribute('cy', `${Math.random() * height}`);
         point.setAttribute('r', `3`)
         point.setAttribute('fill', "#ffd900ff");
-
+        //setInterval(draw_lines, 0, point, point_count)
         setAnimation(point);
 
         svg.appendChild(point)
