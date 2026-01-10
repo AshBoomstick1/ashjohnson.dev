@@ -5,13 +5,12 @@ let svg = document.getElementById("hero_svg")
 const width = body.offsetWidth;
 const height = hero_area.offsetHeight; //140
 
+const pointCount = 20 //Math.floor((width * height) / 8000) //4000
 const overDue = 0;
 
 function getPosition(el) {
+  console.log(el)
   var rect = el.getBoundingClientRect()
-  if (true) {
-    window.requestAnimationFrame(draw_lines);
-  }
   return([rect.top, rect.left]);
 }
 
@@ -22,7 +21,7 @@ const getDistance = (x1, y1, x2, y2) => {
 const getClosest = (point) => {
   let pointCoordList = [];
   let closestList = [];
-  let numOfClosestToRecord = 1;
+  let numOfClosestToRecord = 3;
 
   for (let i = 0; i < svg.children.length; i++) {
     if (point != svg.children[i]) {
@@ -46,6 +45,14 @@ const getClosest = (point) => {
   }
 
   return closestList;
+}
+
+function drawLineFrame() {
+  for (let i = 0; i < document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "circle").length; i++) {
+    draw_lines(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "circle")[i], pointCount);
+  }
+  
+  window.requestAnimationFrame(drawLineFrame);
 }
 
 const draw_lines = (point, pointCount) => {
@@ -167,11 +174,11 @@ const recursiveAnimation = (point) => {
     
     let move = point.animate(
     [
-      {transform: `translate3d(${point.getAttribute("cx")}px, ${point.getAttribute("cy")}px, 0px)`},
+      {transform: `translate3d(0px, 0px, 0px)`},
       {transform: `translate3d(${endX}px, ${endY}px, 0px)`},
     ],
     {
-      duration: Math.floor(Math.random() * 10 + 7) * 1000,
+      duration: Math.floor(Math.random() * 10 + 7) * 100,
       easing: "linear",
       iterations: 1
     },
@@ -194,17 +201,18 @@ export const graph = () => {
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
     svg.style.backgroundColor = "purple";
-    const point_count = Math.floor((width * height) / 8000) //4000
     //create points
-    for (let i = 0; i < 10; i++) { //point_count
-        const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        point.setAttribute('cx', `${Math.random() * width}`);
-        point.setAttribute('cy', `${Math.random() * height}`);
-        point.setAttribute('r', `3`)
-        point.setAttribute('fill', "#ffd900ff");
-        setInterval(draw_lines, 0, point, point_count)
-        setAnimation(point);
+    for (let i = 0; i < pointCount; i++) { //point_count
+      const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      point.setAttribute('cx', `${Math.random() * width}`);
+      point.setAttribute('cy', `${Math.random() * height}`);
+      point.setAttribute('r', `3`)
+      point.setAttribute('fill', "#ffd900ff");
+      //setInterval(draw_lines, 0, point, point_count)
+      setAnimation(point);
 
-        svg.appendChild(point)
+      svg.appendChild(point)
     }
+
+    //drawLineFrame();
 }
