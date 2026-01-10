@@ -5,25 +5,25 @@ let svg = document.getElementById("hero_svg")
 const width = body.offsetWidth;
 const height = hero_area.offsetHeight; //140
 
-const pointCount = 20 //Math.floor((width * height) / 8000) //4000
-const overDue = 0;
+const pointCount = Math.floor((width * height) / 64000) //4000
+const numOfLines = 3;
+const overDue = 40;
+const animationSpeed = 5000;
 
 function getPosition(el) {
-  console.log(el)
   var rect = el.getBoundingClientRect()
-  return([rect.top, rect.left]);
+  return([rect.left, rect.top]);
 }
 
 const getDistance = (x1, y1, x2, y2) => {
-  return Math.abs(((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2)));
+  return Math.abs(Math.pow((x1 - x2),2) + Math.pow((y1 - y2), 2));
 }
 
 const getClosest = (point) => {
   let pointCoordList = [];
   let closestList = [];
-  let numOfClosestToRecord = 3;
 
-  for (let i = 0; i < svg.children.length; i++) {
+  for (let i = 0; i < pointCount; i++) {
     if (point != svg.children[i]) {
       const coords = getPosition(svg.children[i])
       pointCoordList.push(coords[0], coords[1]);
@@ -32,10 +32,11 @@ const getClosest = (point) => {
 
   let pointCoords = getPosition(point);
 
-  for (let i = 0; i < numOfClosestToRecord; i++) {
+  for (let i = 0; i < numOfLines; i++) {
     let closest = [0, getDistance(pointCoords[0], pointCoords[1], pointCoordList[0], pointCoordList[1])];
     for (let j = 2; j < pointCoordList.length; j += 2) {
       let distance = getDistance(pointCoords[0], pointCoords[1], pointCoordList[j], pointCoordList[j + 1]);
+      console.log(i, j, distance)
       if (distance < closest[1]) {
         closest = [j, distance];
       }
@@ -56,35 +57,33 @@ function drawLineFrame() {
 }
 
 const draw_lines = (point, pointCount) => {
-  let closestList = getClosest(point)
+  let closestList = getClosest(point);
   let pointIdx = 0;
   let tempPoint = point
   while( (tempPoint = tempPoint.previousSibling) != null ) pointIdx++;
 
-  //let currentLines = document.getElementsByClassName(`lineGroup${pointIdx}`);
-  //for (let i = 0; i < currentLines.length; i++) {
-    //currentLines[i].remove();
-    //svg.removeChild(currentLines[i])
-  //}
-  if (document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line").length > pointCount) {
-    for (let i = 0; i < closestList.length; i++) {
-      svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[pointIdx * 3]);
-    }
-  }
-  
-
   for (let i = 0; i < closestList.length; i++) {
     let pointCoords = getPosition(point);
     let closestCoords = getPosition(closestList[i]);
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('x1', `${pointCoords[0]}`);
-    line.setAttribute('y1', `${pointCoords[1]}`);
-    line.setAttribute('x2', `${closestCoords[0]}`);
-    line.setAttribute('y2', `${closestCoords[1]}`);
-    line.setAttribute('stroke-width', `1`)
-    line.setAttribute('stroke', "#ffd900ff");
 
-    svg.appendChild(line)
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', `${pointCoords[0] + 2.5}`);
+    line.setAttribute('y1', `${pointCoords[1] + 2.5}`);
+    line.setAttribute('x2', `${closestCoords[0] + 2.5}`);
+    line.setAttribute('y2', `${closestCoords[1] + 2.5}`);
+    line.setAttribute('stroke-width', `2`)
+    line.setAttribute('stroke', "rgb(220, 187, 0)");
+
+    if (document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line").length >= pointCount * numOfLines) {
+      svg.removeChild(document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[(pointIdx * numOfLines) - 0 + i]);
+      if (i == 2) {
+        svg.appendChild(line)
+      } else {
+        svg.insertBefore(line, document.getElementsByTagNameNS('http://www.w3.org/2000/svg', "line")[(pointIdx * numOfLines) - 0 + i]);
+      }
+    } else {
+      svg.appendChild(line)
+    }
   }
 }
 
@@ -126,7 +125,7 @@ const setAnimation = (point) => {
             {transform: `translate3d(${endX}px, ${endY}px, 0px)`, offset: 1.0},
         ],
         {
-            duration: Math.floor(Math.random() * 10 + 7) * 100,
+            duration: Math.floor(Math.random() * 10 + 7) * animationSpeed,
             easing: "linear",
             iterations: 1
         },
@@ -135,7 +134,6 @@ const setAnimation = (point) => {
     move.onfinish = () => {
       point.setAttribute("cx", +endX + +cx);
       point.setAttribute("cy", +endY + +cy);
-      //console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
       recursiveAnimation(point)
     }
 }
@@ -178,14 +176,13 @@ const recursiveAnimation = (point) => {
       {transform: `translate3d(${endX}px, ${endY}px, 0px)`},
     ],
     {
-      duration: Math.floor(Math.random() * 10 + 7) * 100,
+      duration: Math.floor(Math.random() * 10 + 7) * animationSpeed,
       easing: "linear",
       iterations: 1
     },
     );
 
     move.onfinish = () => {
-      console.log(+endX + +cx, +endY + +cy, endX, endY, cx, cy);
       point.setAttribute("cx", +endX + +cx);
       point.setAttribute("cy", +endY + +cy);
       recursiveAnimation(point);
@@ -214,5 +211,5 @@ export const graph = () => {
       svg.appendChild(point)
     }
 
-    //drawLineFrame();
+    drawLineFrame();
 }
