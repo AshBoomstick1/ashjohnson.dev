@@ -1,3 +1,5 @@
+import { bubble } from "./sortingAlgs/bubble.js";
+
 let hero_area = document.getElementById("intro");
 let body = document.getElementsByTagName("body")[0];
 let svg = document.getElementById("hero_svg");
@@ -9,6 +11,8 @@ const setUpData = (x, y, width, height) => {
   const totalDataCount = Math.floor(width / 5) + 1;
   let numList = []
   let randNumList = []
+  let firstIdx;
+  let lastIdx;
   for (let i = 1; i <= totalDataCount; i++) numList.push(i);
 
   for (let i = 0; i < totalDataCount; i++) {
@@ -17,18 +21,19 @@ const setUpData = (x, y, width, height) => {
     numList.splice(randNum, 1);
   }
 
-  console.log(totalDataCount)
-
   for (let i = 0; i < totalDataCount; i++) {
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', `${i * 5 + x}`);
-    rect.setAttribute('y', `${randNumList[i] * height/totalDataCount + y}`);
+    rect.setAttribute('y', `${randNumList[i] * height/totalDataCount + y - height/totalDataCount}`);
     rect.setAttribute('width', `${4}`);
-    rect.setAttribute('height', `${height - randNumList[i] * height/totalDataCount}`);
+    rect.setAttribute('height', `${height - randNumList[i] * height/totalDataCount + height/totalDataCount}`);
     rect.setAttribute('fill', "rgb(220, 187, 0)");
-    rect.setAttribute("id", randNumList[i])
     svg.appendChild(rect);
+    if (i==0) firstIdx = Array.prototype.indexOf.call(svg.children, rect);
+    if (i==totalDataCount - 1) lastIdx = Array.prototype.indexOf.call(svg.children, rect) + 1;
   }
+
+  return [firstIdx, lastIdx]
 }
 
 export const sort = () => {
@@ -36,5 +41,8 @@ export const sort = () => {
   svg.setAttribute("width", `${width}px`);
   svg.setAttribute("height", `${height}px`);
   svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  setUpData(500, 100, 800, 500);
+  const dataSet1 = setUpData(0, 100, 100, 100);
+  const dataSet2 = setUpData(100, 200, 100, 100);
+
+  bubble(dataSet1);
 }
