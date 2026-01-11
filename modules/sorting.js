@@ -45,4 +45,5 @@ export const sort = () => {
   const dataSet2 = setUpData(100, 200, 100, 100);
 
   bubble(dataSet1);
+  bubble(dataSet2);
 }
