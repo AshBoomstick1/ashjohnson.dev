@@ -3,11 +3,11 @@ let body = document.getElementsByTagName("body")[0];
 let svg = document.getElementById("hero_svg")
 
 const width = body.offsetWidth;
-const height = hero_area.offsetHeight; //140
+const height = hero_area.offsetHeight - 140; //140
 
-const pointCount = 20//Math.floor((width * height) / 64000) //4000
-const numOfLines = 3;
-const overDue = 40;
+const pointCount = Math.floor((width * height) / 32000) //4000
+const numOfLines = 4;
+const overDue = -40;
 const animationSpeed = 5000;
 
 function getPosition(el) {
@@ -201,7 +201,6 @@ export const graph = () => {
     svg.setAttribute("height", `${height}px`);
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
-    svg.style.backgroundColor = "purple";
     //create points
     for (let i = 0; i < pointCount; i++) { //point_count
       const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');

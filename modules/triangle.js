@@ -201,7 +201,7 @@ function generate_layer(delay, i) {
         {
           setTimeout(() => {
             traverse_tree(search_array[0]);
-          }, delay / 2);
+          }, delay);
         }
         resolve()
       }

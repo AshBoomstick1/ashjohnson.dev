@@ -41,7 +41,7 @@ h2 {
     font-family: "Cinzel", serif;
     position: relative;
     z-index: 20;
-    display: none;
+    display: none; /*block*/
 }
 
 h3 {
