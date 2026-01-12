@@ -21,4 +21,4 @@ const hero_list = [generate_triangle, graph];
 //pick_hero();
 //generate_triangle();
 //graph();
-sort();
+//sort();

@@ -5,7 +5,7 @@ let body = document.getElementsByTagName("body")[0];
 let svg = document.getElementById("hero_svg");
 
 const width = body.offsetWidth;
-const height = hero_area.offsetHeight; //140
+const height = hero_area.offsetHeight + 140; //140
 
 const setUpData = (x, y, width, height, direction) => {
   const colWidth = 10;
@@ -53,21 +53,17 @@ export const sort = () => {
   svg.setAttribute("width", `${width}px`);
   svg.setAttribute("height", `${height}px`);
   svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  const dataSet1 = setUpData(0, 150, 500, 350, "up");
-  const dataSet2 = setUpData(0, 500, 500, 350, "down");
-  const dataSet5 = setUpData(500, 150, 400, 350, "up");
-  const dataSet6 = setUpData(500, 500, 400, 350, "down");
-  const dataSet3 = setUpData(900, 150, 400, 350, "up");
-  const dataSet4 = setUpData(900, 500, 400, 350, "down");
-  const dataSet7 = setUpData(1300, 150, 400, 350, "up");
-  const dataSet8 = setUpData(1300, 500, 400, 350, "down");
+  const dataSet1 = setUpData(0, 0, width/3, height/2, "up");
+  const dataSet2 = setUpData(0, height/2, width/3, height/2, "down");
+  const dataSet3 = setUpData(width/3, 0, width/3, height/2, "up");
+  const dataSet4 = setUpData(width/3, height/2, width/3, height/2, "down");
+  const dataSet5 = setUpData(width/3 * 2, 0, width/3, height/2, "up");
+  const dataSet6 = setUpData(width/3 * 2, height/2, width/3, height/2, "down");
 
   bubble(dataSet1);
   bubble(dataSet2);
   bubble(dataSet3);
   bubble(dataSet4);
-  bubble(dataSet6);
   bubble(dataSet5);
-  bubble(dataSet7);
-  bubble(dataSet8);
+  bubble(dataSet6);
 }
